@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "activeModel": "harabin-wind-stream",
+  "models": [
+    {
+      "id": "harabin-wind-stream",
+      "name": "Harabin Bogey — Wind-stream breakup",
+      "description": "Popiersie z klockami unoszonymi do tyłu. Wybrany wariant do oceny.",
+      "thumbnail": "previews/wind-stream-breakup-v001.png",
+      "triangles": 4630548,
+      "modelScale": 0.55,
+      "transport": {
+        "encoding": "gzip-parts",
+        "parts": [
+          {
+            "url": "models/wind-stream-breakup-v001.glb.gz.part01",
+            "bytes": 50331648,
+            "sha256": "731e6baecc9cd47ecb0d5ec163eb3d272df4fcb7399a29697b4f9d4dad92d65f"
+          },
+          {
+            "url": "models/wind-stream-breakup-v001.glb.gz.part02",
+            "bytes": 50331648,
+            "sha256": "c8fa128fdb81637378b2ec837097e16b5af3e0094c2ec601eb9b93ca6ba89d39"
+          },
+          {
+            "url": "models/wind-stream-breakup-v001.glb.gz.part03",
+            "bytes": 27071570,
+            "sha256": "11e3a9354ac47bd4c91545dd038daa5109114de81eb00540c62e260599060680"
+          }
+        ],
+        "compressedBytes": 127734866,
+        "gzipSha256": "9c66f9ddd428c515a4c61c861e9a7bfcfad28e997dbeb8698c4a2f9cd21699b0",
+        "decodedBytes": 169079420,
+        "decodedSha256": "3d3ab52f44a6b6d0ca22e918b49ff3792f0713aa0b0baf32974a975c75f017e7"
+      },
+      "version": "wind-v001",
+      "appearance": "Selected full-quality model; transport-only compression, no geometry/texture reduction."
+    }
+  ]
+}

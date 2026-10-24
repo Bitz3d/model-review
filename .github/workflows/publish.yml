@@ -1,0 +1,39 @@
+name: Publish authorized model review
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  validate-and-deploy:
+    if: github.repository == 'Bitz3d/model-review' && github.ref == 'refs/heads/main' && github.actor == 'Bitz3d' && github.triggering_actor == 'Bitz3d'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the authorized repository
+        uses: actions/checkout@v4
+
+      - name: Validate manifest, assets, hashes, decoded GLBs, and allowlist
+        run: python3 scripts/validate_and_stage.py --output _site
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload allowlisted Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
