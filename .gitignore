@@ -1,6 +1,7 @@
 node_modules
 site/
 _site/
+_site-rollercoaster-v001/
 .vite/
 coverage/
 test-results/

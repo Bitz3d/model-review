@@ -35,6 +35,93 @@
       },
       "version": "wind-v001",
       "appearance": "Selected full-quality model; transport-only compression, no geometry/texture reduction."
+    },
+    {
+      "id": "rollercoaster-1",
+      "name": "Rollercoaster — poziom 1 (szczyt)",
+      "description": "Pełnojakościowy model kontrolny udostępniony na prośbę do zewnętrznej oceny. Wygląd zakodowany czeka na akceptację; przenośny materiał używa skończonego wypieku normal RGB8 i nie jest równoważny Native Cycles.",
+      "thumbnail": "previews/rollercoaster-1-summit.png",
+      "triangles": 1207952,
+      "modelScale": 1,
+      "transport": {
+        "encoding": "gzip-parts",
+        "parts": [
+          {
+            "url": "models/rollercoaster-1-summit-full-quality.glb.gz.part01",
+            "bytes": 50331648,
+            "sha256": "7035d21a071ed9fd75daa939d9777f3e023185cdf40a29cba8b25167cea9ee34"
+          },
+          {
+            "url": "models/rollercoaster-1-summit-full-quality.glb.gz.part02",
+            "bytes": 7009055,
+            "sha256": "8498467a7d4a072baa26a9ad88fe46f447238df8d3cc671e113ad309d1a87770"
+          }
+        ],
+        "compressedBytes": 57340703,
+        "gzipSha256": "03c7e5efded91266281a2314c4f1b97a1af3c6c41a4db7d15aa5b8daace4ba7b",
+        "decodedBytes": 68148660,
+        "decodedSha256": "348fd0562256e3592ddfceff880ea812bde8d4425961b81671c3fa19956166ed"
+      },
+      "version": "summit-web-v001-full-quality",
+      "appearance": "Full-quality control requested for outside review; encoded appearance pending (0/3). Gzip transport only; publication performs no geometry or texture conversion. The finite RGB8 normal bake is not Native Cycles equality."
+    },
+    {
+      "id": "rollercoaster-2",
+      "name": "Rollercoaster — poziom 2 (szczyt)",
+      "description": "Pełnojakościowy model kontrolny udostępniony na prośbę do zewnętrznej oceny. Wygląd zakodowany czeka na akceptację; przenośny materiał używa skończonego wypieku normal RGB8 i nie jest równoważny Native Cycles.",
+      "thumbnail": "previews/rollercoaster-2-summit.png",
+      "triangles": 1228544,
+      "modelScale": 1,
+      "transport": {
+        "encoding": "gzip-parts",
+        "parts": [
+          {
+            "url": "models/rollercoaster-2-summit-full-quality.glb.gz.part01",
+            "bytes": 50331648,
+            "sha256": "691c471040b6cb5c77b7077bb4e79151b26c1ea06250bdc956a75ad24692709e"
+          },
+          {
+            "url": "models/rollercoaster-2-summit-full-quality.glb.gz.part02",
+            "bytes": 7307802,
+            "sha256": "465f3d2cea203f9404585e73f9ba39a76371d690a4374e525750d481315d3dbc"
+          }
+        ],
+        "compressedBytes": 57639450,
+        "gzipSha256": "270838b59c28e85939fd156f8ba8c3ced3075117d91a910ff9b85309472d4d7f",
+        "decodedBytes": 68902128,
+        "decodedSha256": "ac5d4e14edff93bdd7e4dfc73d97f542b4c795e8226ad3557453dcd87e17cd47"
+      },
+      "version": "summit-web-v001-full-quality",
+      "appearance": "Full-quality control requested for outside review; encoded appearance pending (0/3). Gzip transport only; publication performs no geometry or texture conversion. The finite RGB8 normal bake is not Native Cycles equality."
+    },
+    {
+      "id": "rollercoaster-3",
+      "name": "Rollercoaster — poziom 3 (szczyt)",
+      "description": "Pełnojakościowy model kontrolny udostępniony na prośbę do zewnętrznej oceny. Wygląd zakodowany czeka na akceptację; przenośny materiał używa skończonego wypieku normal RGB8 i nie jest równoważny Native Cycles.",
+      "thumbnail": "previews/rollercoaster-3-summit.png",
+      "triangles": 1250704,
+      "modelScale": 1,
+      "transport": {
+        "encoding": "gzip-parts",
+        "parts": [
+          {
+            "url": "models/rollercoaster-3-summit-full-quality.glb.gz.part01",
+            "bytes": 50331648,
+            "sha256": "19319cf5e2e576f30fc10bbfdb343d7358e5761a44a62d39b65795f9419a8c45"
+          },
+          {
+            "url": "models/rollercoaster-3-summit-full-quality.glb.gz.part02",
+            "bytes": 7607316,
+            "sha256": "ce89663e97143ce1b2fb4c9edfafa9d0f11862064e52f8f2d507237a2aa1893c"
+          }
+        ],
+        "compressedBytes": 57938964,
+        "gzipSha256": "62dae13f5e728d0aa177c4fdac4e6c6f53c2e2237246a9a7f06aacf0340302d2",
+        "decodedBytes": 69996064,
+        "decodedSha256": "8a9739cd305add89a531b65e244077d573f6ed660c9a432960255c3cb554a8be"
+      },
+      "version": "summit-web-v001-full-quality",
+      "appearance": "Full-quality control requested for outside review; encoded appearance pending (0/3). Gzip transport only; publication performs no geometry or texture conversion. The finite RGB8 normal bake is not Native Cycles equality."
     }
   ]
 }
