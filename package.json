@@ -17,6 +17,7 @@
   },
   "scripts": {
     "build": "vite build",
+    "test:unit": "node --test scripts/catalog_navigation.test.mjs",
     "stage": "python3 scripts/validate_and_stage.py --output site"
   }
 }
