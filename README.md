@@ -1,6 +1,6 @@
 # Model Review
 
-A public, static GitHub Pages review site for explicitly authorized 3D models. Visitors can browse static thumbnails and choose whether to download a heavy interactive model. There is no login, admin UI, upload endpoint, analytics, or client secret.
+A public, static GitHub Pages review site for explicitly authorized 3D models. The compact interface keeps one viewport and switches its selected model with native **Model** and **Poziom** controls; a heavy interactive model is downloaded only after the visitor explicitly starts 3D. There is no gallery, login, admin UI, upload endpoint, analytics, or client secret.
 
 ## Publication boundary
 
@@ -18,7 +18,7 @@ A visitor can link directly to a listed model with:
 https://bitz3d.github.io/model-review/?model=MODEL_ID
 ```
 
-Unknown IDs show a catalog-level 404 message and do not download model data.
+Unknown IDs show a 404 message in the single-view interface and do not download model data.
 
 ## Add an authorized model
 
@@ -55,7 +55,7 @@ Use an unused loopback port; do not reuse another review server:
 python3 scripts/serve_local.py --root _site --port 5298
 ```
 
-Then open `http://127.0.0.1:5298/model-review/`. The browser automation intentionally requires an existing local Playwright installation and installed Chrome; it does not install anything:
+Then open `http://127.0.0.1:5298/model-review/`. The browser automation intentionally requires an existing local Playwright installation and installed headful Chrome; it does not install anything:
 
 ```bash
 PLAYWRIGHT_PACKAGE=../griplock-hub/frontend/package.json \
@@ -64,9 +64,9 @@ PLAYWRIGHT_PACKAGE=../griplock-hub/frontend/package.json \
   --out-dir /path/outside/this/repository/browser-run
 ```
 
-The command above is the preserved first-release Harabin-only regression: its one-card expectations do not match the later four-entry catalog. Current Rollercoaster release verification is maintained outside this public repository and checks each declared model/hash, four camera views, cancellation/retry and disposal. Do not report the legacy command as a passing multi-model test.
+The maintained regression checks the root/default, the exact legacy `?model=rollercoaster-3` link, unknown IDs, both selectors, no eager 3D/runtime load, cancellation/retry/rapid switching, all four published decoded hashes and triangle counts, disposal/context loss, back/forward identity, desktop input, native/fallback fullscreen, and trusted CDP-dispatched touch input. It also captures desktop and mobile-emulation screenshots. For a post-deployment run, `--url` additionally accepts only the exact public URL `https://bitz3d.github.io/model-review/`.
 
-Keep screenshots and verification JSON outside this public repository. Desktop Chrome tests are not physical-phone, network, FPS, memory-ceiling, or universal compatibility claims.
+Keep screenshots and verification JSON outside this public repository. The mobile run is installed headful Chrome with mobile/touch emulation, **not a physical phone**; it is not a mobile Safari, network, FPS, memory-ceiling, or universal compatibility claim.
 
 ## Deployment assembly
 
@@ -87,13 +87,15 @@ It never copies the whole checkout or the whole `public/` directory. This makes 
 
 ## Current Rollercoaster review
 
-Direct links select a level without downloading it until the visitor presses **Uruchom 3D**:
+Direct links select a level in the same viewport without downloading it until the visitor presses **Uruchom 3D**:
 
 - https://bitz3d.github.io/model-review/?model=rollercoaster-1
 - https://bitz3d.github.io/model-review/?model=rollercoaster-2
 - https://bitz3d.github.io/model-review/?model=rollercoaster-3
 
-These controls were already display-normalized/centered, so their manifest `modelScale` is `1`. Full-scene entries at scale at least `1` use camera distance `3.0` to keep the entire footprint visible; the original Harabin scale `0.55` retains distance `2.4`. Lights/materials remain unchanged. Interactive cream background differs from the white source preview captures. The three public files require about57–58 MB of gzip payload each, not a mobile-readiness guarantee.
+These controls were already display-normalized/centered, so their manifest `modelScale` is `1`. Full-scene entries retain camera distance `3.0` on desktop/landscape and use `3.0 × max(1, 1.08 / camera aspect)` in narrow portrait views so reset and view presets keep the intended source bounds visible. The original Harabin scale `0.55` retains distance `2.4` at every aspect and is not auto-fitted to its distant particles. Lights/materials remain unchanged. Interactive cream background differs from the white source preview captures. The three public files require about 57–58 MB of gzip payload each; Harabin requires about 128 MB. These sizes are disclosed in the expandable model information and are not a mobile-readiness guarantee.
+
+After 3D starts, changing **Model** or **Poziom** cancels stale work, releases the previous scene and loads the new selection into the same viewport. One finger rotates by default; two fingers pan and pinch-zoom. The **Przesuwanie** mode enables one-finger pan. Desktop left-drag follows the selected mode, right/Shift-drag pans, and the wheel zooms. The 44 px controls provide explicit zoom, centering, view presets, fullscreen (with an in-page fallback), and close actions.
 
 ## Owner-only manual publication
 
