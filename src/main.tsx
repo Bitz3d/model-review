@@ -294,7 +294,7 @@ function App() {
         </div>
       </section>
 
-      <footer>Publiczny podgląd zatwierdzonego modelu. Kompresja służy wyłącznie do transportu — geometria i tekstury nie zostały zredukowane. Brak logowania, panelu administracyjnego i przesyłania plików.</footer>
+      <footer>Publiczny podgląd udostępnionego modelu. Kompresja służy wyłącznie do transportu — geometria i tekstury nie zostały zredukowane. Brak logowania, panelu administracyjnego i przesyłania plików.</footer>
     </main>
   );
 }

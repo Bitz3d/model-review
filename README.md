@@ -6,7 +6,7 @@ A public, static GitHub Pages review site for explicitly authorized 3D models. V
 
 Only publish models and thumbnails whose public release has been explicitly authorized. `public/models.json` is the public catalog and the deployment allowlist. The workflow fails if `public/` contains an unlisted file, if a path escapes its allowed folder, if a part/decoded hash or size differs, if the active model is missing, if the GLB triangle count differs, or if an external GLB dependency/required decoder extension is found.
 
-The current model is a full-quality GLB transported as ordered gzip parts. Gzip is transport-only: browser decoding must reproduce the manifest's exact decoded byte count and SHA-256. The Three/R3F viewer code is also loaded only after the visitor starts 3D. Do not rename gzip bytes to `.glb`, and do not describe this heavy desktop-browser review as phone readiness or universal performance.
+The listed models are full-quality GLBs transported as ordered gzip parts. The original Harabin entry/default is retained; the separately authorized Rollercoaster levels 1/2/3 are public review candidates, not yet human-approved encoded web appearances. Each Rollercoaster entry discloses its existing finite RGB8 normal-shader translation. Publication performs no further geometry or texture conversion. Gzip is transport-only: browser decoding must reproduce the manifest's exact decoded byte count and SHA-256. The Three/R3F viewer code is also loaded only after the visitor starts 3D. Do not rename gzip bytes to `.glb`, and do not describe this heavy desktop-browser review as phone readiness or universal performance.
 
 ## Change the active model
 
@@ -64,7 +64,9 @@ PLAYWRIGHT_PACKAGE=../griplock-hub/frontend/package.json \
   --out-dir /path/outside/this/repository/browser-run
 ```
 
-Keep screenshots and verification JSON outside this public repository. This desktop Chrome test is not a physical-phone, network, FPS, memory-ceiling, or universal compatibility claim.
+The command above is the preserved first-release Harabin-only regression: its one-card expectations do not match the later four-entry catalog. Current Rollercoaster release verification is maintained outside this public repository and checks each declared model/hash, four camera views, cancellation/retry and disposal. Do not report the legacy command as a passing multi-model test.
+
+Keep screenshots and verification JSON outside this public repository. Desktop Chrome tests are not physical-phone, network, FPS, memory-ceiling, or universal compatibility claims.
 
 ## Deployment assembly
 
@@ -83,10 +85,20 @@ The script creates `_site/` from only:
 
 It never copies the whole checkout or the whole `public/` directory. This makes future updates fail closed instead of accidentally publishing unrelated files.
 
+## Current Rollercoaster review
+
+Direct links select a level without downloading it until the visitor presses **Uruchom 3D**:
+
+- https://bitz3d.github.io/model-review/?model=rollercoaster-1
+- https://bitz3d.github.io/model-review/?model=rollercoaster-2
+- https://bitz3d.github.io/model-review/?model=rollercoaster-3
+
+These controls were already display-normalized/centered, so their manifest `modelScale` is `1`. Full-scene entries at scale at least `1` use camera distance `3.0` to keep the entire footprint visible; the original Harabin scale `0.55` retains distance `2.4`. Lights/materials remain unchanged. Interactive cream background differs from the white source preview captures. The three public files require about57–58 MB of gzip payload each, not a mobile-readiness guarantee.
+
 ## Owner-only manual publication
 
 `.github/workflows/publish.yml` has only `workflow_dispatch`; there are no push or pull-request deployment triggers. The deployment job additionally requires repository `Bitz3d/model-review`, branch `main`, and both the original `github.actor` and any `github.triggering_actor` on a rerun to equal `Bitz3d`. It uses official GitHub Pages actions and least-purpose permissions (`contents: read`, `pages: write`, `id-token: write`).
 
 The repository owner configures Pages for GitHub Actions and the `github-pages` environment with a main-only deployment branch policy. Public visitors cannot dispatch a workflow without repository write permission, and the workflow's explicit owner checks also reject other actors. Do not grant write access to reviewers.
 
-To publish: open **Actions → Publish authorized model review → Run workflow**, select **main**, and confirm. Committing a new model or changing `activeModel` does not publish automatically. The public URL is https://bitz3d.github.io/model-review/ . Model files and the repository are public and downloadable; publication is owner-controlled, not private access.
+To publish: open **Actions → Publish authorized model review → Run workflow**, select **main**, and confirm. Committing a new model or changing `activeModel` does not deploy Pages automatically. Pushing assets to this public repository does make them publicly downloadable before the Pages workflow is dispatched, so explicit public-release authority is required before pushing as well. The public URL is https://bitz3d.github.io/model-review/ . Model files and the repository are public and downloadable; publication is owner-controlled, not private access.

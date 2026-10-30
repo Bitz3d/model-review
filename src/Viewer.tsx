@@ -7,14 +7,24 @@ import type { GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 export type PresetName = 'front' | 'quarter' | 'side' | 'rear' | 'reset';
 export type CameraCommand = { sequence: number; preset: PresetName } | null;
 
-const DEFAULT_CAMERA: [number, number, number] = [0, 0.35, 2.4];
-const PRESETS: Record<PresetName, { position: [number, number, number]; target: [number, number, number] }> = {
-  front: { position: [0, 0.15, 2.4], target: [0, 0.02, 0] },
-  quarter: { position: [-1.697, 0.35, 1.697], target: [0, 0, 0] },
-  side: { position: [-2.4, 0.35, 0], target: [0, 0, 0] },
-  rear: { position: [0, 0.35, -2.4], target: [0, 0, 0] },
-  reset: { position: DEFAULT_CAMERA, target: [0, 0, 0] },
-};
+const REVIEW_DISTANCE = 2.4;
+const FULL_SCENE_DISTANCE = 3;
+
+function distanceForScale(scale: number): number {
+  return scale >= 1 ? FULL_SCENE_DISTANCE : REVIEW_DISTANCE;
+}
+
+function presetFor(name: PresetName, distance: number): { position: [number, number, number]; target: [number, number, number] } {
+  const diagonal = distance / Math.sqrt(2);
+  const presets: Record<PresetName, { position: [number, number, number]; target: [number, number, number] }> = {
+    front: { position: [0, 0.15, distance], target: [0, 0.02, 0] },
+    quarter: { position: [-diagonal, 0.35, diagonal], target: [0, 0, 0] },
+    side: { position: [-distance, 0.35, 0], target: [0, 0, 0] },
+    rear: { position: [0, 0.35, -distance], target: [0, 0, 0] },
+    reset: { position: [0, 0.35, distance], target: [0, 0, 0] },
+  };
+  return presets[name];
+}
 
 function Scene({
   gltf,
@@ -31,6 +41,7 @@ function Scene({
 }) {
   const controls = useRef<OrbitControlsImpl>(null);
   const { camera, gl, invalidate, scene } = useThree();
+  const distance = distanceForScale(scale);
 
   useEffect(() => {
     const canvas = gl.domElement;
@@ -69,12 +80,12 @@ function Scene({
 
   useEffect(() => {
     if (!command || !controls.current) return;
-    const preset = PRESETS[command.preset];
+    const preset = presetFor(command.preset, distance);
     camera.position.fromArray(preset.position);
     controls.current.target.fromArray(preset.target);
     controls.current.update();
     invalidate();
-  }, [command?.sequence, camera, invalidate]);
+  }, [command?.sequence, camera, distance, invalidate]);
 
   return (
     <>
@@ -114,7 +125,7 @@ export function Viewer({
     <Canvas
       frameloop="demand"
       dpr={1}
-      camera={{ position: DEFAULT_CAMERA, fov: 35, near: 0.01, far: 100 }}
+      camera={{ position: [0, 0.35, distanceForScale(scale)], fov: 35, near: 0.01, far: 100 }}
       gl={{ antialias: true, preserveDrawingBuffer: true, powerPreference: 'high-performance' }}
       onCreated={({ gl }) => {
         gl.domElement.dataset.testid = 'model-canvas';
